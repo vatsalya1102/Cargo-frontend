@@ -1,11 +1,20 @@
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from 'react-router-dom'
+import { Auth } from './components/Auth/Auth.js';
+import { Navbar } from './components/Navbar/Navbar.js'
 
-function App() {
+export default function App() {
+
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
-  );
+    <Router>
+    <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Auth />} />
+      </Routes>
+    </Router>
+  )
 }
-
-export default App;
