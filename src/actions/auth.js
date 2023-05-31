@@ -5,9 +5,8 @@ export const signin = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signIn(formData);
         dispatch({ type: AUTH, data })
-        console.log(data.token);
         console.log(JSON.parse(localStorage.getItem('profile')));
-        navigate('/');
+        navigate('/home');
     } catch (error) {
         console.log(error);
     }
@@ -16,10 +15,19 @@ export const signin = (formData, navigate) => async (dispatch) => {
 export const signup = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signUp(formData);
-        console.log(data.token);
         dispatch({ type: AUTH, data })
         console.log(JSON.parse(localStorage.getItem('profile')));
-        navigate('/');
+        navigate('/home');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const gettransporters = () => async () => {
+    try {
+        const transporters = await api.getTransporters();
+        // console.log(transporters.data);
+        return transporters.data;
     } catch (error) {
         console.log(error);
     }

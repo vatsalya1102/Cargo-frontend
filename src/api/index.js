@@ -1,19 +1,21 @@
 import axios from 'axios'
 
-// const API = axios.create({ baseURL: 'http://localhost:5000' })
+const API = axios.create({ baseURL: 'http://localhost:5000' })
 
-// API.interceptors.request.use((req) => {
-//     if (localStorage.getItem('profile')) {
-//         req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
-//     }
-//     return req;
-// })
+API.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token} ${JSON.parse(localStorage.getItem('profile')).result.name}`;
+    }
+    return req;
+})
 
-// export const signIn = (formData) => API.post('/user/signin', formData);
-// export const signUp = (formData) => API.post('/user/signup', formData);
+export const createOrder = (form) => API.post('/transport', form);
+export const fetchOrders = (transporter) => {
+    return API.get(`/transport/${transporter}`);
+}
 
-const url1 = 'http://localhost:5000/user/signin';
-const url2 = 'http://localhost:5000/user/signup';
-
-export const signIn = (formdata) => axios.post(url1, formdata);
-export const signUp = (formdata) => axios.post(url2, formdata);
+export const signIn = (formdata) => API.post('/user/signin', formdata);
+export const signUp = (formdata) => API.post('/user/signup', formdata);
+export const getTransporters = () => {
+    return API.get('/user');
+}

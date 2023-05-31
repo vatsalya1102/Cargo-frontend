@@ -1,4 +1,4 @@
-import { Avatar, Button, TextField, Grid, Box, Typography, Container, CssBaseline } from '@mui/material';
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, CssBaseline, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
@@ -8,7 +8,7 @@ import { signin, signup } from '../../actions/auth';
 
 const defaultTheme = createTheme();
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', address: '' }
+const initialState = { firstName: '', lastName: '', email: '', password: '', address: '', role: '' }
 
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
@@ -86,6 +86,19 @@ const Auth = () => {
                                                 name="address"
                                                 onChange={handleChange}
                                             />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-radio-buttons-group-label"
+                                                name="role"
+                                                id='role'
+                                                required
+                                                onChange={handleChange}
+                                            >
+                                                <FormControlLabel value="Transporter" control={<Radio />} label="Transporter" />
+                                                <FormControlLabel value="Manufacturer" control={<Radio />} label="Manufacturer" />
+                                            </RadioGroup>
                                         </Grid>
                                     </>
                                 )
