@@ -1,26 +1,34 @@
-import React from 'react'
-import { Typography, CardContent, Box } from '@material-ui/core'
+import { Typography, CardContent, Paper } from '@material-ui/core'
+import { Button } from '@mui/material'
 
-const TransporterCard = ({ orders }) => {
+const TransporterCard = ({ order, currentId, setCurrentId, orderList }) => {
+    const handleClick = () => {
+        setCurrentId(order._id);
+        console.log(orderList);
+    }
 
-    
     return (
-        <Box>
-            <CardContent>
+        <CardContent>
+            <Paper elevation={3} style={{
+                padding: 8,
+                backgroundColor: 'e3f2fd',
+                border: "1px solid black"
+            }}>
                 <Typography variant='h6' gutterBottom>
-                    OrderID
+                    {order._id}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
-                    From: Shimla to Delhi
+                    {`From ${order.fromCity} to ${order.toCity}`}
                 </Typography>
-                <Typography gutterBottom variant="body1">
-                    Set no. 11, Type-5, Kasumpati, Shimla
-                </Typography>
+                {/* <Typography gutterBottom variant="body1">
+                        Set no. 11, Type-5, Kasumpati, Shimla
+                    </Typography> */}
                 <Typography variant="body1">
-                    Quantity: 2
+                    Quantity: {order.quantity}
                 </Typography>
-            </CardContent>
-        </Box>
+                <Button onClick={handleClick}>Click to review</Button>
+            </Paper>
+        </CardContent>
     )
 }
 

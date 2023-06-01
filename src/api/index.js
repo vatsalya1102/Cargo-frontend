@@ -13,6 +13,7 @@ export const createOrder = (form) => API.post('/transport', form);
 export const fetchOrders = (transporter) => {
     return API.get(`/transport/${transporter}`);
 }
+export const updateOrder = (id, updatedOrder) => API.patch(`/transport/${id}`, updatedOrder);
 
 export const signIn = (formdata) => API.post('/user/signin', formdata);
 export const signUp = (formdata) => API.post('/user/signup', formdata);

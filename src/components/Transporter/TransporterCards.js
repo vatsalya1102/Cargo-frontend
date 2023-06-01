@@ -1,16 +1,20 @@
-// import { Grid } from '@mui/material'
-// import TransporterCard from './TransporterCard'
+import { Grid } from '@mui/material'
+import TransporterCard from './TransporterCard'
 
-// const TransporterCards = ({ orders }) => {
-//     return (
-//         <Grid container alignItems='stretch' spacing={4}>
-//             {orders.map((order) => (
-//                 <Grid key={order._id} item xs={12} sm={6}>
-//                     <TransporterCard order={order}  />
-//                 </Grid>
-//             ))}
-//         </Grid>
-//     )
-// }
+const TransporterCards = ({ orders, currentId, setCurrentId }) => {
+    const rev = orders;
 
-// export default TransporterCards
+    return (
+        <>
+            {rev && rev.map((order) => {
+                return (
+                    <Grid item key={order._id}>
+                        <TransporterCard orderList={orders} order={order} currentId={currentId} setCurrentId={setCurrentId}/>
+                    </Grid>
+                )
+            })}
+        </>
+    )
+}
+
+export default TransporterCards

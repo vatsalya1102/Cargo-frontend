@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createOrder } from '../../actions/transporter'
 
 export const ManuForm = ({ currentId, setCurrentId, transporters }) => {
-    const initialState = { toCity: '', fromCity: '', address: '', quantity: '', transporter: '', manufacturer: '' };
+    const initialState = { toCity: '', fromCity: '', address: '', quantity: '', transporter: '', manufacturer: '', price: '' };
 
     const [age, setAge] = useState("");
 
@@ -81,7 +81,7 @@ export const ManuForm = ({ currentId, setCurrentId, transporters }) => {
                             onChange={handleChange}
                         >
                             {transporters.map((item) => (
-                                <MenuItem key={item._id} value={item}>{item.name}</MenuItem>
+                                <MenuItem key={item._id} value={item.name}>{item.name}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>

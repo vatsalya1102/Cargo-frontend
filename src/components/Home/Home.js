@@ -9,8 +9,6 @@ import { gettransporters } from '../../actions/auth';
 const Home = () => {
 
     const user = JSON.parse(localStorage.getItem('profile'));
-    const users = useSelector((state) => state);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const transporters = useRef('');
 
