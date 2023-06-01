@@ -11,21 +11,38 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
     const selected = useRef('');
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    const [priceState, setPriceState] = useState('');
+
+    // useEffect(() => {
+    //     console.log(orderList);
+    //     const selectedOrder = currentId && orderList && orderList.filter((ordersel) => {
+    //         return ordersel._id === currentId;
+    //     })
+    //     console.log(selectedOrder);
+    //     if (currentId && selectedOrder) {
+    //         console.log(selectedOrder[0]._id);
+    //         selected.current = selectedOrder[0];
+    //         setForm(selected.current);
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [currentId, selected.current])
+
+    const process = () => {
+        console.log(orderList);
         const selectedOrder = currentId && orderList && orderList.filter((ordersel) => {
             return ordersel._id === currentId;
         })
+        console.log(selectedOrder);
         if (currentId && selectedOrder) {
             console.log(selectedOrder[0]._id);
             selected.current = selectedOrder[0];
             setForm(selected.current);
         }
-    }, [currentId])
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(form);
-        await dispatch(updateOrder(currentId, { ...form }))
+        await dispatch(updateOrder(currentId, { ...form, price: priceState }))
         clear();
     }
 
@@ -34,6 +51,13 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
         setForm(
             { _id: '', toCity: '', fromCity: '', address: '', quantity: '', transporter: '', manufacturer: '', price: '' }
         )
+    }
+
+    const priceSet = (e) => {
+        e.preventDefault();
+        setPriceState(e.target.value)
+        console.log(priceState);
+        process();
     }
 
     return (
@@ -64,9 +88,7 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
                                 type="number"
                                 fullWidth
                                 size='small'
-                                value={form.price}
-                                onChange={(e) => setForm({ ...form, price: e.target.value })
-                                }
+                                onChange={priceSet}
                             />
                         </Grid>
 

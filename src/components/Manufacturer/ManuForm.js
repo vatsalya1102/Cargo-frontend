@@ -3,15 +3,17 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../../actions/transporter'
 
-export const ManuForm = ({ currentId, setCurrentId, transporters }) => {
-    const initialState = { toCity: '', fromCity: '', address: '', quantity: '', transporter: '', manufacturer: '', price: '' };
+export const ManuForm = ({ transporters }) => {
 
     const [age, setAge] = useState("");
+
+    const user = JSON.parse(localStorage.getItem('profile'));
+
+    const initialState = { toCity: '', fromCity: '', address: user.result.address, quantity: '', transporter: '', manufacturer: '', price: '' };
 
     const [form, setForm] = useState(initialState);
 
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'));
 
     const handleChange = (e) => {
         setAge(e.target.value);
@@ -61,7 +63,7 @@ export const ManuForm = ({ currentId, setCurrentId, transporters }) => {
                 <Grid item xs={12}>
                     <TextField
                         id="outlined-number"
-                        label="Quantity"
+                        label="Quantity (Kg)"
                         type="number"
                         fullWidth
                         size='small'
