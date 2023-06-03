@@ -1,5 +1,5 @@
 import { Paper, Grid, Typography, TextField, Button } from '@mui/material'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { updateOrder } from '../../actions/transporter';
 import { useDispatch } from 'react-redux';
 
@@ -12,20 +12,6 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
     const dispatch = useDispatch();
 
     const [priceState, setPriceState] = useState('');
-
-    // useEffect(() => {
-    //     console.log(orderList);
-    //     const selectedOrder = currentId && orderList && orderList.filter((ordersel) => {
-    //         return ordersel._id === currentId;
-    //     })
-    //     console.log(selectedOrder);
-    //     if (currentId && selectedOrder) {
-    //         console.log(selectedOrder[0]._id);
-    //         selected.current = selectedOrder[0];
-    //         setForm(selected.current);
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [currentId, selected.current])
 
     const process = () => {
         console.log(orderList);
@@ -73,10 +59,9 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
                             <TextField
                                 id="id"
                                 name="_id"
-                                label="Order Id"
+                                label={`OrderID: ${currentId}`}
                                 type='text'
                                 fullWidth
-                                value={form._id}
                                 disabled
                             />
                         </Grid>

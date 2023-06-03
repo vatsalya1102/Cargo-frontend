@@ -2,8 +2,7 @@ import { Container } from '@mui/material';
 import ManufacturerView from '../Manufacturer/ManufacturerView';
 import TransporterView from '../Transporter/TransporterView';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { gettransporters } from '../../actions/auth';
 
 const Home = () => {
@@ -25,7 +24,7 @@ const Home = () => {
     console.log(transportersList);
 
     return (
-        <Container>
+        <Container sx={{ marginTop: 4 }}>
             {user?.result?.role === 'Manufacturer' ? <ManufacturerView transporters={transportersList} /> : <TransporterView />}
         </Container>
     )

@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+// const API = axios.create({ baseURL: 'http://localhost:5000' })
+
+const API = axios.create({ baseURL: 'https://cargoapp-backend.onrender.com' })
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -12,6 +14,9 @@ API.interceptors.request.use((req) => {
 export const createOrder = (form) => API.post('/transport', form);
 export const fetchOrders = (transporter) => {
     return API.get(`/transport/${transporter}`);
+}
+export const fetchOrdersForManu = (manufacturer) => {
+    return API.get(`/order/${manufacturer}`);
 }
 export const updateOrder = (id, updatedOrder) => API.patch(`/transport/${id}`, updatedOrder);
 
