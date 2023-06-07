@@ -1,6 +1,6 @@
 import { Typography, CardContent, Paper } from '@material-ui/core'
 
-const ManufacturerCard = ({ order, ordersList }) => {
+const ManufacturerCard = ({ order }) => {
 
   return (
     <CardContent>

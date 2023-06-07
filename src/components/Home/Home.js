@@ -10,7 +10,6 @@ const Home = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
     const transporters = useRef('');
-
     const [transportersList, setTransportersList] = useState([]);
 
     useEffect(() => {
@@ -20,8 +19,6 @@ const Home = () => {
         }
         gettingTransporters();
     }, [dispatch]);
-
-    console.log(transportersList);
 
     return (
         <Container sx={{ marginTop: 4 }}>

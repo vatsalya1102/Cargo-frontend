@@ -23,8 +23,6 @@ const TransporterView = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  console.log(ordersList);
-
   return (
     <Container>
       <Grid container justifyContent='space-between' alignItems='stretch' spacing={4}>
@@ -33,7 +31,7 @@ const TransporterView = () => {
           <TransporterCards orders={ordersList} currentId={currentId} setCurrentId={setCurrentId} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <TransporterForm setCurrentId={setCurrentId} currentId={currentId} orderList={ordersList} /> 
+          <TransporterForm setOrdersList={setOrdersList} setCurrentId={setCurrentId} currentId={currentId} orderList={ordersList} /> 
         </Grid>
       </Grid>
     </Container>

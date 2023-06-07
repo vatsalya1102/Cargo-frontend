@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { updateOrder } from '../../actions/transporter';
 import { useDispatch } from 'react-redux';
 
-const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
+const TransporterForm = ({ currentId, orderList, setCurrentId, setOrdersList }) => {
     const [form, setForm] = useState(
         { _id: '', toCity: '', fromCity: '', address: '', quantity: '', transporter: '', manufacturer: '', price: '' }
     );
@@ -14,13 +14,10 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
     const [priceState, setPriceState] = useState('');
 
     const process = () => {
-        console.log(orderList);
         const selectedOrder = currentId && orderList && orderList.filter((ordersel) => {
             return ordersel._id === currentId;
         })
-        console.log(selectedOrder);
         if (currentId && selectedOrder) {
-            console.log(selectedOrder[0]._id);
             selected.current = selectedOrder[0];
             setForm(selected.current);
         }
@@ -29,6 +26,16 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(updateOrder(currentId, { ...form, price: priceState }))
+        let array2 = orderList.map(a => {
+            var returnValue = {...a};
+          
+            if (a._id === currentId) {
+              returnValue.price = priceState;
+            }
+          
+            return returnValue
+          })
+        setOrdersList(array2);
         clear();
     }
 
@@ -42,7 +49,6 @@ const TransporterForm = ({ currentId, orderList, setCurrentId }) => {
     const priceSet = (e) => {
         e.preventDefault();
         setPriceState(e.target.value)
-        console.log(priceState);
         process();
     }
 

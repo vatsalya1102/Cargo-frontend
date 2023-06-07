@@ -6,8 +6,6 @@ import decode from 'jwt-decode';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-    // const classes = useStyles();
-
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,6 +19,7 @@ const Navbar = () => {
             if (decodedToken.exp * 1000 < new Date().getTime()) logout();
         }
         setUser(JSON.parse(localStorage.getItem('profile')));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location])
 
     const logout = () => {

@@ -4,8 +4,8 @@ import * as api from '../api'
 export const createOrder = (order) => async (dispatch) => {
     try {
         const { data } = await api.createOrder(order);
-        console.log(data);
         dispatch({ type: CREATE, payload: data })
+        return data;
     } catch (error) {
         console.log(error.message);
     }
@@ -24,8 +24,8 @@ export const getOrders = (transporter) => async (dispatch) => {
 export const updateOrder = (id, order) => async (dispatch) => {
     try {
         const { data } = await api.updateOrder(id, order);
-        console.log(data);
         dispatch({ type: UPDATE, payload: data })
+        return data;
     } catch (error) {
         console.log(error.message);
     }

@@ -3,14 +3,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../../actions/transporter'
 
-export const ManuForm = ({ transporters }) => {
+export const ManuForm = ({ transporters, ordersList, setOrdersList }) => {
 
     const [age, setAge] = useState("");
-
     const user = JSON.parse(localStorage.getItem('profile'));
-
     const initialState = { toCity: '', fromCity: '', address: user.result.address, quantity: '', transporter: '', manufacturer: '', price: '' };
-
     const [form, setForm] = useState(initialState);
 
     const dispatch = useDispatch();
@@ -26,7 +23,10 @@ export const ManuForm = ({ transporters }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createOrder({ form }));
+        const newOrder = await dispatch(createOrder({ form }));
+        setOrdersList(prev =>
+            [...prev, { ...newOrder }]
+        );
         clear();
     }
 
@@ -40,7 +40,6 @@ export const ManuForm = ({ transporters }) => {
                 <Grid item xs={12}>
                     <TextField
                         required
-                        id="fromCity"
                         name="fromCity"
                         label="Starting location"
                         fullWidth
@@ -51,7 +50,6 @@ export const ManuForm = ({ transporters }) => {
                 <Grid item xs={12}>
                     <TextField
                         required
-                        id="toCity"
                         name="toCity"
                         label="Ending location"
                         fullWidth
@@ -62,7 +60,6 @@ export const ManuForm = ({ transporters }) => {
 
                 <Grid item xs={12}>
                     <TextField
-                        id="outlined-number"
                         label="Quantity (Kg)"
                         type="number"
                         fullWidth
@@ -77,7 +74,6 @@ export const ManuForm = ({ transporters }) => {
                         <InputLabel id="demo-simple-select-label">Transporter</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
-                            id="demo-simple-select"
                             value={age}
                             label="Transporter"
                             onChange={handleChange}

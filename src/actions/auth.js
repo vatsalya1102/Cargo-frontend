@@ -4,11 +4,12 @@ import * as api from '../api'
 export const signin = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signIn(formData);
+        console.log(data);
         dispatch({ type: AUTH, data })
         console.log(JSON.parse(localStorage.getItem('profile')));
         navigate('/home');
     } catch (error) {
-        console.log(error);
+        console.log(error.response);
     }
 }
 

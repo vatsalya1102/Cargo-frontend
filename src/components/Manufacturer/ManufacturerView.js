@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Grid, Typography } from '@material-ui/core'
 import ManufacturerCards from './ManufacturerCards'
@@ -9,21 +9,19 @@ const ManufacturerView = ({ transporters }) => {
   const [currentId, setCurrentId] = useState(null);
   const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
-  const orders = useRef('');
 
-  const [ordersList, setOrdersList] = useState('');
+  const [ordersList, setOrdersList] = useState([]);
 
   useEffect(() => {
-    async function gettingOrders() {
-      orders.current = await dispatch(getOrdersForManu(user?.result?.name.split(" ")[0]));
-      setOrdersList(orders.current);
-    }
     gettingOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, []);
 
-  console.log(ordersList);
-
+  async function gettingOrders() {
+    const orders = await dispatch(getOrdersForManu(user?.result?.name.split(" ")[0]));
+    console.log(orders)
+    setOrdersList(orders)
+  }
 
   return (
     <Container>
@@ -33,7 +31,7 @@ const ManufacturerView = ({ transporters }) => {
           <ManufacturerCards ordersList={ordersList} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <ManuForm transporters={transporters} currentId={currentId} setCurrentId={setCurrentId} />
+          <ManuForm ordersList={ordersList} transporters={transporters} currentId={currentId} setCurrentId={setCurrentId} setOrdersList={setOrdersList}/>
         </Grid>
       </Grid>
     </Container>

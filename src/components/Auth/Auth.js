@@ -44,7 +44,8 @@ const Auth = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
-                >
+                >   
+                    <Typography gutterBottom component="h1" variant='h5'>Welcome to Cargo App</Typography>
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
@@ -61,7 +62,6 @@ const Auth = () => {
                                                 name="firstName"
                                                 required
                                                 fullWidth
-                                                id="firstName"
                                                 label="First Name"
                                                 autoFocus
                                                 onChange={handleChange}
@@ -71,7 +71,6 @@ const Auth = () => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="lastName"
                                                 label="Last Name"
                                                 name="lastName"
                                                 onChange={handleChange}
@@ -81,7 +80,6 @@ const Auth = () => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="address"
                                                 label="Address"
                                                 name="address"
                                                 onChange={handleChange}
@@ -92,7 +90,6 @@ const Auth = () => {
                                                 row
                                                 aria-labelledby="demo-radio-buttons-group-label"
                                                 name="role"
-                                                id='role'
                                                 required
                                                 onChange={handleChange}
                                             >

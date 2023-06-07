@@ -4,7 +4,6 @@ import { Button } from '@mui/material'
 const TransporterCard = ({ order, currentId, setCurrentId, orderList }) => {
     const handleClick = () => {
         setCurrentId(order._id);
-        console.log(orderList);
     }
 
     return (
