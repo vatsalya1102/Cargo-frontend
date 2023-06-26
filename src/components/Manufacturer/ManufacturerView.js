@@ -19,7 +19,6 @@ const ManufacturerView = ({ transporters }) => {
 
   async function gettingOrders() {
     const orders = await dispatch(getOrdersForManu(user?.result?.name.split(" ")[0]));
-    console.log(orders)
     setOrdersList(orders)
   }
 

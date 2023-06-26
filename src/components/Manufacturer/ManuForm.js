@@ -24,14 +24,14 @@ export const ManuForm = ({ transporters, ordersList, setOrdersList }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newOrder = await dispatch(createOrder({ form }));
-        setOrdersList(prev =>
-            [...prev, { ...newOrder }]
-        );
+        setOrdersList(newOrder ? (prev =>
+            [...prev, { ...newOrder }]) : (prev =>
+                [...prev]))
         clear();
     }
 
     return (
-        <Paper elevation={3} sx={{ padding: 5, marginY: 10 }}>
+        <Paper elevation={5} sx={{ padding: 5, marginY: 10 }}>
 
             <Typography variant="h6" align='center' gutterBottom sx={{ paddingBottom: 5 }}>
                 Order with Transporter

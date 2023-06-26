@@ -1,0 +1,11 @@
+.card-fields {
+    display: inline;
+    font-weight: 600;
+    color: #2196f3;
+}
+
+.id-field{
+    display: inline;
+    font-weight: 600;
+    color: #f50057;
+}

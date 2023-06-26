@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { Auth } from './components/Auth/Auth.js';
 import { Navbar } from './components/Navbar/Navbar.js'
 import Home from './components/Home/Home.js';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -20,6 +22,7 @@ export default function App() {
         <Route exact path='/auth' element={!user ? <Auth /> : <Navigate to='/' />} />
         <Route exact path='/home' element={<Home user={user}  />} />
       </Routes>
+      <ToastContainer />
     </Router>
   )
 }

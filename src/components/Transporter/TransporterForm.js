@@ -55,7 +55,7 @@ const TransporterForm = ({ currentId, orderList, setCurrentId, setOrdersList }) 
     return (
         <>
             {currentId && (
-                <Paper elevation={3} sx={{ padding: 5, marginY: 10 }}>
+                <Paper elevation={5} sx={{ padding: 5, marginY: 10 }}>
 
                     <Typography variant="h6" align='center' gutterBottom sx={{ paddingBottom: 5 }}>
                         Send Price to manufacturer

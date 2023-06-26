@@ -39,13 +39,13 @@ const Auth = () => {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 6,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
                 >   
-                    <Typography gutterBottom component="h1" variant='h5'>Welcome to Cargo App</Typography>
+                    <Typography gutterBottom component="h1" variant='h5'>Ordering made easy!</Typography>
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>

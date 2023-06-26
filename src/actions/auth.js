@@ -1,15 +1,23 @@
 import { AUTH } from '../constants/actionTypes';
 import * as api from '../api'
+import { toast } from 'react-toastify';
 
 export const signin = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signIn(formData);
-        console.log(data);
         dispatch({ type: AUTH, data })
-        console.log(JSON.parse(localStorage.getItem('profile')));
         navigate('/home');
     } catch (error) {
-        console.log(error.response);
+        toast.error('Please enter valid credentials !', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
     }
 }
 
@@ -20,7 +28,16 @@ export const signup = (formData, navigate) => async (dispatch) => {
         console.log(JSON.parse(localStorage.getItem('profile')));
         navigate('/home');
     } catch (error) {
-        console.log(error);
+        toast.error('Please enter valid credentials !', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
     }
 }
 
